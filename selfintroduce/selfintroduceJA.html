@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>自己紹介ジェネレーター（日本語オンリー）</title>
+  <meta name="viewport" content="width=400">
+  <style>
+    body { font-family: 'Segoe UI', 'メイリオ', sans-serif; background: #fafaff; padding: 2em;}
+    .container { max-width: 520px; margin: auto; background: #fff; border-radius: 20px; box-shadow: 0 2px 12px #0001; padding: 2em;}
+    label { display:block; margin-top: 1em; font-weight:bold;}
+    input, select { width:100%; padding: .5em; margin-top: .3em; border-radius: 6px; border:1px solid #ccc;}
+    button { margin-top:1.5em; padding:.7em 2em; background: #1e293b; color:#fff; border-radius: 10px; border: none; font-size:1.1em; cursor:pointer;}
+    .output { margin-top: 2em; padding: 1em; background: #e0e7ef; border-radius: 10px;}
+    .subtitle { color:#64748b; font-size:1.1em;}
+    h2 { text-align:center; letter-spacing:.06em;}
+    .jp { margin-bottom: .6em;}
+    .en { color: #444; font-size:.98em;}
+    .output-title {font-size: 1.1em; color: #111; margin-bottom: .3em;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>自己紹介ジェネレーター<br><span style="font-size:0.7em;color:#888;">（日本語のみ）</span></h2>
+    <div class="subtitle">好きなもの・性格などを入力して、いろんなスタイルの自己紹介文を自動生成！</div>
+    <form id="introForm" onsubmit="return false;">
+      <label>名前</label>
+      <input type="text" id="name" value="ゆみたちゃん" required>
+      
+      <label>好きなもの1</label>
+      <input type="text" id="like1" value="パンク">
+      
+      <label>好きなもの2</label>
+      <input type="text" id="like2" value="海">
+      
+      <label>好きなもの3</label>
+      <input type="text" id="like3" value="柴犬">
+      
+      <label>苦手なもの</label>
+      <input type="text" id="dislike" value="虫">
+      
+      <label>性格</label>
+      <input type="text" id="personality" value="楽天的で怖がり">
+      
+      <label>ギャップ・意外な一面</label>
+      <input type="text" id="gap" value="インテリな一面もある">
+      
+      <label>出身地や好きな場所 <span style="color:#aaa;">（ストリートhiphop女子用）</span></label>
+      <input type="text" id="location" value="ドバイ">
+      
+      <button type="button" onclick="generate()">生成！</button>
+    </form>
+
+    <div class="output" id="output" style="display:none;">
+      <div class="output-title">🐾 ゴロ風</div>
+      <div class="jp" id="goro-jp"></div>
+      <div class="en" id="goro-en"></div>
+      
+      <div class="output-title" style="margin-top:1em;">🎤 ストリートhiphop女子風</div>
+      <div class="jp" id="hiphop-jp"></div>
+      <div class="en" id="hiphop-en"></div>
+      
+      <div class="output-title" style="margin-top:1em;">💥 パンク女子風</div>
+      <div class="jp" id="punk-jp"></div>
+      <div class="en" id="punk-en"></div>
+    </div>
+  </div>
+
+  <script>
+    function generate() {
+      const name = document.getElementById('name').value;
+      const like1 = document.getElementById('like1').value;
+      const like2 = document.getElementById('like2').value;
+      const like3 = document.getElementById('like3').value;
+      const dislike = document.getElementById('dislike').value;
+      const personality = document.getElementById('personality').value;
+      const gap = document.getElementById('gap').value;
+      const location = document.getElementById('location').value;
+
+      // ゴロ風
+      const goro = `わたしの名前は${name}だよ。好きなのは${like1}、${like2}、それと${like3}！ちょっと苦手なのは${dislike}なんだ…。性格は${personality}で、実は${gap}なとこもあるんだわん。みんな仲良くしてね！`;
+
+      // ストリートhiphop女子風
+      const hiphop = `Yo yo！あたしは${name}、${location}出身。やっぱ${like1}と${like2}がバイブス！${like3}も欠かせない。だけど${dislike}はムリ！性格は${personality}、リアルに生きてる。みんな、ぶち上げていこう！`;
+
+      // パンク女子風
+      const punk = `Yo、${name}だよ。全力で${like1}と${like2}愛してるし、${like3}も大好き。だけど${dislike}だけは勘弁！性格は${personality}、ちょい反骨で、ときどき${gap}な一面もあるよ。一緒にぶっ飛ばそう！`;
+
+      document.getElementById('goro-jp').textContent = goro;
+      document.getElementById('goro-en').textContent = goro; // 英語欄も同じ内容
+
+      document.getElementById('hiphop-jp').textContent = hiphop;
+      document.getElementById('hiphop-en').textContent = hiphop;
+
+      document.getElementById('punk-jp').textContent = punk;
+      document.getElementById('punk-en').textContent = punk;
+
+      document.getElementById('output').style.display = "block";
+    }
+  </script>
+</body>
+</html>
