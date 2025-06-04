@@ -2,11 +2,11 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>自己紹介ジェネレーター（日本語オンリー）</title>
+  <title>自己紹介ジェネレーター</title>
   <meta name="viewport" content="width=400">
   <style>
     body { font-family: 'Segoe UI', 'メイリオ', sans-serif; background: #fafaff; padding: 2em;}
-    .container { max-width: 520px; margin: auto; background: #fff; border-radius: 20px; box-shadow: 0 2px 12px #0001; padding: 2em;}
+    .container { max-width: 500px; margin: auto; background: #fff; border-radius: 20px; box-shadow: 0 2px 12px #0001; padding: 2em;}
     label { display:block; margin-top: 1em; font-weight:bold;}
     input, select { width:100%; padding: .5em; margin-top: .3em; border-radius: 6px; border:1px solid #ccc;}
     button { margin-top:1.5em; padding:.7em 2em; background: #1e293b; color:#fff; border-radius: 10px; border: none; font-size:1.1em; cursor:pointer;}
@@ -20,31 +20,31 @@
 </head>
 <body>
   <div class="container">
-    <h2>自己紹介ジェネレーター<br><span style="font-size:0.7em;color:#888;">（日本語のみ）</span></h2>
+    <h2>自己紹介ジェネレーター</h2>
     <div class="subtitle">好きなもの・性格などを入力して、いろんなスタイルの自己紹介文を自動生成！</div>
-    <form id="introForm" onsubmit="return false;">
-      <label>名前</label>
+    <form id="introForm">
+      <label>名前（Name）</label>
       <input type="text" id="name" value="ゆみたちゃん" required>
       
-      <label>好きなもの1</label>
+      <label>好きなもの1（Like 1）</label>
       <input type="text" id="like1" value="パンク">
       
-      <label>好きなもの2</label>
+      <label>好きなもの2（Like 2）</label>
       <input type="text" id="like2" value="海">
       
-      <label>好きなもの3</label>
+      <label>好きなもの3（Like 3）</label>
       <input type="text" id="like3" value="柴犬">
       
-      <label>苦手なもの</label>
+      <label>苦手なもの（Dislike）</label>
       <input type="text" id="dislike" value="虫">
       
-      <label>性格</label>
+      <label>性格（Personality）</label>
       <input type="text" id="personality" value="楽天的で怖がり">
       
-      <label>ギャップ・意外な一面</label>
+      <label>ギャップ・意外な一面（Gap/Secret side）</label>
       <input type="text" id="gap" value="インテリな一面もある">
       
-      <label>出身地や好きな場所 <span style="color:#aaa;">（ストリートhiphop女子用）</span></label>
+      <label>出身地や好きな場所（Location） <span style="color:#aaa;">（ストリートhiphop女子用）</span></label>
       <input type="text" id="location" value="ドバイ">
       
       <button type="button" onclick="generate()">生成！</button>
@@ -67,6 +67,7 @@
 
   <script>
     function generate() {
+      // 入力取得
       const name = document.getElementById('name').value;
       const like1 = document.getElementById('like1').value;
       const like2 = document.getElementById('like2').value;
@@ -77,22 +78,22 @@
       const location = document.getElementById('location').value;
 
       // ゴロ風
-      const goro = `わたしの名前は${name}だよ。好きなのは${like1}、${like2}、それと${like3}！ちょっと苦手なのは${dislike}なんだ…。性格は${personality}で、実は${gap}なとこもあるんだわん。みんな仲良くしてね！`;
+      document.getElementById('goro-jp').textContent =
+        `わたしの名前は${name}だよ。好きなのは${like1}、${like2}、それと${like3}！ちょっと苦手なのは${dislike}なんだ…。性格は${personality}で、実は${gap}なとこもあるんだわん。みんな仲良くしてね！`;
+      document.getElementById('goro-en').textContent =
+        `My name is ${name}. I love ${like1}, ${like2}, and also ${like3}! I'm not a big fan of ${dislike}… My personality is ${personality}, but actually, I have a bit of ${gap} too. Let’s get along!`;
 
       // ストリートhiphop女子風
-      const hiphop = `Yo yo！あたしは${name}、${location}出身。やっぱ${like1}と${like2}がバイブス！${like3}も欠かせない。だけど${dislike}はムリ！性格は${personality}、リアルに生きてる。みんな、ぶち上げていこう！`;
+      document.getElementById('hiphop-jp').textContent =
+        `Yo yo！あたしは${name}、${location}出身。やっぱ${like1}と${like2}がバイブス！${like3}も欠かせない。だけど${dislike}はムリ！性格は${personality}、リアルに生きてる。みんな、ぶち上げていこう！`;
+      document.getElementById('hiphop-en').textContent =
+        `Yo yo! I’m ${name}, reppin’ ${location}. I vibe with ${like1} and ${like2}, can’t live without ${like3}. But when it comes to ${dislike}? Nah, not for me! My style is ${personality}—keepin’ it real, always. Let’s turn it up!`;
 
       // パンク女子風
-      const punk = `Yo、${name}だよ。全力で${like1}と${like2}愛してるし、${like3}も大好き。だけど${dislike}だけは勘弁！性格は${personality}、ちょい反骨で、ときどき${gap}な一面もあるよ。一緒にぶっ飛ばそう！`;
-
-      document.getElementById('goro-jp').textContent = goro;
-      document.getElementById('goro-en').textContent = goro; // 英語欄も同じ内容
-
-      document.getElementById('hiphop-jp').textContent = hiphop;
-      document.getElementById('hiphop-en').textContent = hiphop;
-
-      document.getElementById('punk-jp').textContent = punk;
-      document.getElementById('punk-en').textContent = punk;
+      document.getElementById('punk-jp').textContent =
+        `Yo、${name}だよ。全力で${like1}と${like2}愛してるし、${like3}も大好き。だけど${dislike}だけは勘弁！性格は${personality}、ちょい反骨で、ときどき${gap}な一面もあるよ。一緒にぶっ飛ばそう！`;
+      document.getElementById('punk-en').textContent =
+        `Yo, I’m ${name}. I go all out for ${like1} and ${like2}, plus I’m crazy about ${like3}. But ${dislike}? No way! My attitude is totally ${personality}, a bit rebellious, and sometimes I show my ${gap} side too. Let’s go wild together!`;
 
       document.getElementById('output').style.display = "block";
     }
